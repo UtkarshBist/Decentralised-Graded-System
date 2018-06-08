@@ -1,0 +1,122 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+rule NetworkAdminUser {
+    description: "Grant business network administrators full access to user resources"
+    participant: "org.hyperledger.composer.system.NetworkAdmin"
+    operation: ALL
+    resource: "**"
+    action: ALLOW
+}
+
+rule Student  {
+    description: "Grant Student to only update mark_grade_student Transaction"
+    participant: "org.acme.model.Student"
+    operation: ALL
+    resource: "org.acme.model.mark_grade_student"
+    action: ALLOW
+}
+
+rule Stud  {
+    description: "Grant Student, Professor, Public Participant to read"
+    participant: "org.acme.model.*"
+    operation: READ
+    resource: "**"
+    action: ALLOW
+}
+
+rule Professor  {
+    description: "Grant Student to only update mark_grade_professor Transaction"
+    participant: "org.acme.model.Professor"
+    operation: ALL
+    resource: "org.acme.model.mark_grade_professor"
+    action: ALLOW
+}
+
+rule Professorcr  {
+    description: "Grant Student to only update mark_grade_professor Transaction"
+    participant: "org.acme.model.Professor"
+    operation: ALL
+    resource: "org.acme.model.Student"
+    action: ALLOW
+}
+
+rule Professorcra  {
+    description: "Grant Student to only update mark_grade_professor Transaction"
+    participant: "org.acme.model.Professor"
+    operation: ALL
+    resource: "org.acme.model.Grade"
+    action: ALLOW
+}
+
+rule Professor23  {
+    description: "Grant Student to only update mark_grade_professor Transaction"
+    participant: "org.acme.model.Professor"
+    operation: ALL
+    resource: "org.acme.model.Public"
+    action: ALLOW
+}
+rule Professor1  {
+    description: "Grant Student to only update mark_grade_professor Transaction"
+    participant: "org.acme.model.Professor"
+    operation: ALL
+    resource: "org.hyperledger.composer.system.AddParticipant"
+    action: ALLOW
+}
+
+rule Professor11  {
+    description: "Grant Student to only update mark_grade_professor Transaction"
+    participant: "org.acme.model.Professor"
+    operation: ALL
+    resource: "org.hyperledger.composer.system.RemoveParticipant"
+    action: ALLOW
+}
+
+rule Professor11s  {
+    description: "Grant Student to only update mark_grade_professor Transaction"
+    participant: "org.acme.model.Professor"
+    operation: ALL
+    resource: "org.hyperledger.composer.system.RemoveAsset"
+    action: ALLOW
+}
+rule Professor1a  {
+    description: "Grant Student to only update mark_grade_professor Transaction"
+    participant: "org.acme.model.Professor"
+    operation: ALL
+    resource: "org.hyperledger.composer.system.AddAsset"
+    action: ALLOW
+}
+rule Professor2 {
+    description: "Grant Student to only update mark_grade_professor Transaction"
+    participant: "org.acme.model.Professor"
+    operation: ALL
+    resource: "org.hyperledger.composer.system.HistorianRecord"
+    action: ALLOW
+}
+rule Professorchange  {
+    description: "Grant Student to only update change Transaction"
+    participant: "org.acme.model.Professor"
+    operation: ALL
+    resource: "org.acme.model.change"
+    action: ALLOW
+}
+
+
+rule NetworkAdminSystem {
+    description: "Grant business network administrators full access to system resources"
+    participant: "org.hyperledger.composer.system.NetworkAdmin"
+    operation: ALL
+    resource: "org.hyperledger.composer.system.**"
+    action: ALLOW
+}

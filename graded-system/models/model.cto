@@ -1,0 +1,119 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/**
+ * New model file
+ */
+
+namespace org.acme.model 
+
+asset Grade identified by grade_id 
+{
+  o String grade_id 
+  o exam exam
+  o Uni university
+  o State state
+  o Double grade_num 
+  --> Student student 
+} 
+
+enum exam
+{
+  o UT1
+  o UT2
+  o Finals
+}
+enum Uni
+{
+  o DBATU
+}
+
+
+
+enum State
+{
+  o INVALID
+  o VALID
+  o PROCESSING
+  o FINALISED
+}
+
+enum Status
+{
+  o NIL
+  o PASS
+  o FAIL
+}
+
+participant Professor identified by professor_id 
+{ 
+  o String professor_id 
+  o String first_name 
+  o String last_name 
+  o Uni university
+  o String test optional
+} 
+
+
+participant Student identified by student_id 
+{
+  o String student_id 
+  o String first_name 
+  o String last_name
+  o Uni university
+  o exam exam
+  o State state
+  o Double last_grade
+  o Double[] grades
+  o Status status
+  o String test optional
+} 
+
+
+participant Public identified by public_id 
+{
+  o String public_id 
+  o String first_name 
+  o String last_name
+  o String Description
+} 
+
+
+transaction mark_grade_professor
+{ 
+  --> Professor professor
+  o Double grade_new
+  --> Student student
+  --> Grade grade
+} 
+
+transaction mark_grade_student 
+{ 
+  -->Student student_id 
+  o Double grade_new
+  --> Student student
+  --> Grade grade
+} 
+
+
+
+transaction change
+{
+  --> Professor id
+  --> Student student
+  --> Grade grade
+  o State state
+}
+
+
